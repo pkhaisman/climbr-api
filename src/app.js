@@ -6,6 +6,9 @@ const helmet = require('helmet');
 const { NODE_ENV } = require('./config');
 const authRouter = require('./auth/auth-router');
 const usersRouter = require('./users/users-router');
+const usersToSwipeRouter = require('./users-to-swipe/users-to-swipe-router');
+const usersLikedRouter = require('./users-liked/users-liked-router.js');
+const usersMatchedRouter = require('./users-matched/users-matched-router.js');
 
 const app = express();
 
@@ -19,6 +22,9 @@ app.use(cors());
 
 app.use(`/api/auth`, authRouter);
 app.use('/api/users', usersRouter);
+app.use('/api/users-liked', usersLikedRouter);
+app.use('/api/users-matched', usersMatchedRouter);
+app.use('/api/users-to-swipe', usersToSwipeRouter);
 
 app.get('/', (req, res) => {
     res.send('Hello, world!');

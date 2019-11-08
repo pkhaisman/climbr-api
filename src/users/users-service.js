@@ -4,6 +4,9 @@ const bcrypt = require('bcryptjs')
 const REGEX_UPPER_LOWER_NUMBER_SPECIAL = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&])[\S]+/
 
 const UsersService = {
+    getAllUsers(db) {
+        return db('climbr_users').select('*')
+    },
     hasUserWithUsername(db, username) {
         return db('climbr_users')
             .where({ username })
@@ -15,6 +18,15 @@ const UsersService = {
             .into('climbr_users')
             .returning('*')
             .then(([user]) => user)
+    },
+    updateUser(db, id, name, bio) {
+        return db('climbr_users')
+            .update({ name, bio })
+            .where({ id })
+            .returning('*')
+            .then(rows => {
+                return rows[0]
+            })
     },
     validatePassword(password) {
         if (password.length < 8) {
@@ -37,6 +49,8 @@ const UsersService = {
     serializeUser(user) {
         return {
             id: user.id,
+            name: xss(user.name),
+            bio: xss(user.bio),
             username: xss(user.username)
         }
     }

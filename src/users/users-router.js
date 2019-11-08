@@ -6,7 +6,16 @@ const usersRouter = express.Router()
 const jsonBodyParser = express.json()
 
 usersRouter
-    .post('/', jsonBodyParser, (req, res, next) => {
+    .route('/')
+    .get((req, res, next) => {
+        UsersService.getAllUsers(req.app.get('db'))
+            .then(users => {
+                const serializedUsers = users.map(user => UsersService.serializeUser(user))
+                res.json(serializedUsers)
+            })
+            .catch(next)
+    })
+    .post(jsonBodyParser, (req, res, next) => {
         const { username, password } = req.body
         
         for (const field of ['username', 'password'])
@@ -50,6 +59,42 @@ usersRouter
                                     .json(UsersService.serializeUser(user))
                             })
                     })
+            })
+            .catch(next)
+    })
+
+usersRouter
+    .route('/:userId')
+    .put(jsonBodyParser, (req, res, next) => {
+        UsersService.updateUser(
+            req.app.get('db'),
+            req.params.userId,
+            req.body.name,
+            req.body.bio,
+            req.body.image
+        )
+            .then(updatedUser => {
+                res.json(updatedUser)
+            })
+            .catch(next)
+    })
+
+usersRouter
+    .route('/:username')
+    .get((req, res, next) => {
+        UsersService.hasUserWithUsername(
+            req.app.get('db'),
+            req.params.username
+        )
+            .then(user => {
+                if (!user) {
+                    return res.status(404).json({ 
+                        error: { 
+                            message: 'User not found' 
+                        }
+                    })
+                }
+                res.json({user})
             })
             .catch(next)
     })

@@ -16,7 +16,6 @@ authRouter
                 })
             }
 
-        // check if username exists in db
         AuthService.getUserWithUsername(
             req.app.get('db'),
             userCredentials.username

@@ -1,0 +1,1 @@
+DROP TABLE IF EXISTS climbr_users_liked;
