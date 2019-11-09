@@ -9,7 +9,7 @@ TRUNCATE
 
 INSERT INTO climbr_users (name, bio, username, password)
 VALUES
-    ('Mike Wadsley', '', 'mike@gmail.com', '$2a$12$QPp9kTOiz/ztC.INh1fnouuVZIHxEqIesW4vgL4BIdmefzOaWgZbO'),
+    ('Demo', '', 'demo@gmail.com', '$2a$12$QPp9kTOiz/ztC.INh1fnouuVZIHxEqIesW4vgL4BIdmefzOaWgZbO'),
     ('Amy Borch', '', 'amy@gmail.com', '$2y$12$WftiRwPcsHYQAUPMsqdfSe0btDpJPhGS82ufsFiIL8kHEuFPtUb9G'),
     ('Josh Dorr', '', 'josh@gmail.com', '$2y$12$m94xYmdjgqwgUchDzn2cfu7nBbtqzXHXRwz84ZNi/J6fR9BOf76w2'),
     ('Katrina Huack', '', 'katrina@gmail.com', '$2y$12$/GK7EqXLD2AFqHuxIYLo1uTvMITzenfYJFCEBFX3u6rI/G6J2QInK'),
@@ -49,24 +49,13 @@ VALUES
 --     (6, 4),
 --     (6, 5);
 
--- INSERT INTO climbr_users_liked (user_id, user_liked_id)
--- VALUES
---     (1, 2),
---     (1, 3),
---     (2, 3),
---     (2, 4),
---     (3, 1),
---     (3, 2),
---     (3, 6),
---     (4, 1),
---     (5, 1),
---     (5, 4),
---     (5, 6),
---     (6, 1),
---     (6, 2),
---     (6, 3),
---     (6, 4),
---     (6, 5);
+INSERT INTO climbr_users_liked (user_id, user_liked_id)
+VALUES
+    (2, 1),
+    (3, 1),
+    (4, 1),
+    (5, 1),
+    (6, 1);
 
 -- INSERT INTO climbr_users_matched (user_id, user_matched_id)
 -- VALUES
