@@ -41,13 +41,18 @@ app.get('/', (req, res) => {
 
 // upload image to cloudinary
 app.post('/api/image-upload', (req, res) => {
-    console.log('post route')
+    console.log('post image route')
     const values = Object.values(req.files)
+    console.log(values)
     const promises = values.map(image => cloudinary.uploader.upload(image.path))
+    console.log(promises)
 
     Promise
         .all(promises)
-        .then(results => res.json(results))
+        .then(results => {
+            console.log(results)
+            return res.json(results)
+        })
         .catch((err) => res.status(400).json(err))
 })
 
