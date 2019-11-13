@@ -28,7 +28,7 @@ usersToSwipeRouter
         )
             .then(UserToSwipe => {
                 const serializeUserToSwipe = UsersToSwipeService.serializeUserToSwipe(UserToSwipe)
-                res.json(serializeUserToSwipe)
+                res.status(201).json(serializeUserToSwipe)
             })
             .catch(next)
     })

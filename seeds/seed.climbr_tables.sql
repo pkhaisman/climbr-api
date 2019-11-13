@@ -7,14 +7,14 @@ TRUNCATE
     climbr_users
     RESTART IDENTITY CASCADE;
 
-INSERT INTO climbr_users (name, bio, username, password)
+INSERT INTO climbr_users (name, bio, image, username, password)
 VALUES
-    ('Demo', '', 'demo@gmail.com', '$2a$12$QPp9kTOiz/ztC.INh1fnouuVZIHxEqIesW4vgL4BIdmefzOaWgZbO'),
-    ('Amy Borch', '', 'amy@gmail.com', '$2y$12$WftiRwPcsHYQAUPMsqdfSe0btDpJPhGS82ufsFiIL8kHEuFPtUb9G'),
-    ('Josh Dorr', '', 'josh@gmail.com', '$2y$12$m94xYmdjgqwgUchDzn2cfu7nBbtqzXHXRwz84ZNi/J6fR9BOf76w2'),
-    ('Katrina Huack', '', 'katrina@gmail.com', '$2y$12$/GK7EqXLD2AFqHuxIYLo1uTvMITzenfYJFCEBFX3u6rI/G6J2QInK'),
-    ('Rory Coughlin', '', 'rory@gmail.com', '$2y$12$DLxRbTHFkX00T/jBMarqTO9v/3BKOJrHoQI4s7R6MSu7iu3SMowkC'),
-    ('Phil Khaisman', '', 'phil@gmail.com', '$2a$12$iY3JU2jnqHvP4UfHRLfWsOSxGgOvEbhDswzkSvEiqmyE41Lnh8HTi');
+    ('Demo', '', '', 'demo@gmail.com', '$2a$12$QPp9kTOiz/ztC.INh1fnouuVZIHxEqIesW4vgL4BIdmefzOaWgZbO'),
+    ('Amy Borch', '', '', 'amy@gmail.com', '$2y$12$WftiRwPcsHYQAUPMsqdfSe0btDpJPhGS82ufsFiIL8kHEuFPtUb9G'),
+    ('Josh Dorr', '', '', 'josh@gmail.com', '$2y$12$m94xYmdjgqwgUchDzn2cfu7nBbtqzXHXRwz84ZNi/J6fR9BOf76w2'),
+    ('Katrina Huack', '', '', 'katrina@gmail.com', '$2y$12$/GK7EqXLD2AFqHuxIYLo1uTvMITzenfYJFCEBFX3u6rI/G6J2QInK'),
+    ('Rory Coughlin', '', '', 'rory@gmail.com', '$2y$12$DLxRbTHFkX00T/jBMarqTO9v/3BKOJrHoQI4s7R6MSu7iu3SMowkC'),
+    ('Phil Khaisman', '', '', 'phil@gmail.com', '$2a$12$iY3JU2jnqHvP4UfHRLfWsOSxGgOvEbhDswzkSvEiqmyE41Lnh8HTi');
 
 -- INSERT INTO climbr_users_to_swipe (user_id, user_to_swipe_id)
 -- VALUES

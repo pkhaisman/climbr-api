@@ -24,9 +24,9 @@ describe('Auth Endpoints', function() {
     afterEach('cleanup', () => testHelpers.cleanTables(db))
 
     describe(`POST /api/auth/login`, () => {
-        beforeEach('insert users', () =>
-            testHelpers.seedUsers(db, testUsers)
-        )
+        beforeEach('insert users', () => {
+            return db('climbr_users').insert(testUsers)
+        })
 
         afterEach('clear users', () => {
             testHelpers.removeUsers(db)

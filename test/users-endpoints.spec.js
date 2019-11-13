@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs')
 const app = require('../src/app')
 const testHelpers = require('./test-helpers.js')
 
-describe.only('Users Endpoints', function() {
+describe('Users Endpoints', function() {
     let db
 
     const { testUsers } = testHelpers.makeFixtures()
@@ -168,6 +168,68 @@ describe.only('Users Endpoints', function() {
                             })
                     )
             })
+        })
+    })
+
+    describe(`GET /api/users`, () => {
+        beforeEach(`insert users`, () => {
+            return db('climbr_users').insert(testUsers)
+        })
+
+        it(`responds with 200 and an array of users`, () => {
+            return supertest(app)
+                .get(`/api/users`)
+                .expect(200)
+                .expect(res => {
+                    expect(res.body).to.be.an('array')
+                    expect(res.body).to.have.length(3)
+                    expect(res.body[0].username).to.equal(testUser.username)
+                })
+
+        })
+    })
+
+    describe(`PUT /api/users/:userId`, () => {
+        beforeEach(`insert users`, () => {
+            return db('climbr_users').insert(testUsers)
+        })
+
+        it(`responds with 200 and updated user`, () => {
+            const userIdToUpdate = 1
+
+            const fieldToUpdate = {
+                bio: 'Updated bio'
+            }
+
+            const expected = {
+                ...testUser,
+                ...fieldToUpdate
+            }
+
+            return supertest(app)
+                .put(`/api/users/${userIdToUpdate}`)
+                .send(fieldToUpdate)
+                .expect(200)
+                .expect(res => {
+                    expect(res.body).to.eql(expected)
+                })
+        })
+    })
+
+    describe(`GET /api/users/:username`, () => {
+        beforeEach(`insert users`, () => {
+            return db('climbr_users').insert(testUsers)
+        })
+
+        it(`responds with 200 and the user`, () => {
+            const username = 'user1'
+
+            return supertest(app)
+                .get(`/api/users/${username}`)
+                .expect(200)
+                .expect(res => {
+                    expect(res.body.user).to.eql(testUser)
+                })
         })
     })
 })

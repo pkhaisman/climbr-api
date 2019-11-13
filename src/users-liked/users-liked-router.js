@@ -27,8 +27,9 @@ usersLikedRouter
             newUserLiked
         )
             .then(userLiked => {
+                // QUESTION should i be setting .location here? What does that do?
                 const serializeUserLiked = UsersLikedService.serializeUserLiked(userLiked)
-                res.json(serializeUserLiked)
+                res.status(201).json(serializeUserLiked)
             })
             .catch(next)
     })

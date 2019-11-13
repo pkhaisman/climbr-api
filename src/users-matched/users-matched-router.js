@@ -28,7 +28,7 @@ usersMatchedRouter
         )
             .then(userMatched => {
                 const serializeUserMatched = UsersMatchedService.serializeUserMatched(userMatched)
-                res.json(serializeUserMatched)
+                res.status(201).json(serializeUserMatched)
             })
             .catch(next)
     })

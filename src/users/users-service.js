@@ -19,9 +19,9 @@ const UsersService = {
             .returning('*')
             .then(([user]) => user)
     },
-    updateUser(db, id, name, bio) {
+    updateUser(db, id, name, bio, image) {
         return db('climbr_users')
-            .update({ name, bio })
+            .update({ name, bio, image })
             .where({ id })
             .returning('*')
             .then(rows => {
@@ -51,6 +51,7 @@ const UsersService = {
             id: user.id,
             name: xss(user.name),
             bio: xss(user.bio),
+            image: xss(user.image),
             username: xss(user.username)
         }
     }
